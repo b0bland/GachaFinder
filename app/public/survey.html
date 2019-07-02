@@ -66,15 +66,20 @@
         $("#formsubmit").on("click", function(event) {
             event.preventDefault();
 
-            var data = [];
+            var numdata = [];
 
             for(n=1;n<7;n++) {
                 var value = $("#question" + [n]).val();
                 var num = parseInt(value) + 1;
-                data.push(num);
+                numdata.push(num);
             }
 
-            console.log(data)
+            console.log(numdata)
+
+            $.post("/api/data", numdata)
+                .then(function(data) {
+                    console.log(data + "add");
+                })
         })
 
     </script>
