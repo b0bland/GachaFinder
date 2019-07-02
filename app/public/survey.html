@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GachaFinder</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 <style>
     form {
@@ -34,31 +35,48 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <label class="questions" for="question1">I play mobile games to relax, not to min-max or tryhard to win.</label>
-                    <div>1 (Disagree) &nbsp; <input type="range" class="custom-range" min="0" max="4" id="question1"> &nbsp; 5 (Agree)</div>
+                    <label class="questions" for="question2">I play mobile games to relax, not to min-max or tryhard to win.</label>
+                    <div>1 (Disagree) &nbsp; <input type="range" class="custom-range" min="0" max="4" id="question2"> &nbsp; 5 (Agree)</div>
                 </div>
                 <br>
                 <div class="form-group">
-                    <label class="questions" for="question1">I prefer mobile games that involve combat.</label>
-                    <div>1 (Disagree) &nbsp; <input type="range" class="custom-range" min="0" max="4" id="question1"> &nbsp; 5 (Agree)</div>
+                    <label class="questions" for="question3">I prefer mobile games that involve combat.</label>
+                    <div>1 (Disagree) &nbsp; <input type="range" class="custom-range" min="0" max="4" id="question3"> &nbsp; 5 (Agree)</div>
                 </div>
                 <br>
                 <div class="form-group">
-                    <label class="questions" for="question1">I like to spend an arm and a leg on my games.</label>
-                    <div>1 (Disagree) &nbsp; <input type="range" class="custom-range" min="0" max="4" id="question1"> &nbsp; 5 (Agree)</div>
+                    <label class="questions" for="question4">I like to spend an arm and a leg on my games.</label>
+                    <div>1 (Disagree) &nbsp; <input type="range" class="custom-range" min="0" max="4" id="question4"> &nbsp; 5 (Agree)</div>
                 </div>
                 <br>
                 <div class="form-group">
-                    <label class="questions" for="question1">I have the most fun when the odds are very low.</label>
-                    <div>1 (Disagree) &nbsp; <input type="range" class="custom-range" min="0" max="4" id="question1"> &nbsp; 5 (Agree)</div>
+                    <label class="questions" for="question5">I prefer games that have an auto button to save me the effort.</label>
+                    <div>1 (Disagree) &nbsp; <input type="range" class="custom-range" min="0" max="4" id="question5"> &nbsp; 5 (Agree)</div>
                 </div>
                 <br>
                 <div class="form-group">
-                    <label class="questions" for="question1">I have the most fun when the odds are very low.</label>
-                    <div>1 (Disagree) &nbsp; <input type="range" class="custom-range" min="0" max="4" id="question1"> &nbsp; 5 (Agree)</div>
+                    <label class="questions" for="question6">It is more important for the game to be visually appealing than it is to have good game mechanics. </label>
+                    <div>1 (Disagree) &nbsp; <input type="range" class="custom-range" min="0" max="4" id="question6"> &nbsp; 5 (Agree)</div>
                 </div>
+                <button class="btn btn-primary" type="submit" id="formsubmit">Submit</button>
             </form>
         </div>
     </div>
+    <script type="text/javascript">
+        $("#formsubmit").on("click", function(event) {
+            event.preventDefault();
+
+            var data = [];
+
+            for(n=1;n<7;n++) {
+                var value = $("#question" + [n]).val();
+                var num = parseInt(value) + 1;
+                data.push(num);
+            }
+
+            console.log(data)
+        })
+
+    </script>
 </body>
 </html>
