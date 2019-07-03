@@ -80,7 +80,32 @@
                 .then(function(data) {
                     console.log(data + "add");
                 })
-        })
+
+            comparison()
+        });
+
+        function comparison() {
+
+            $.ajax({
+                url: "/api/data",
+                method: "GET"
+            }).then(function(tableData) {
+                var gachaID = "";
+                var smallNum = 100;
+                for(n=0;n<tableData.length;n++){
+                    var tableDataVal = tableData[n];
+                    for(x=0;x<numdata.length;x++){
+                        var sums = 0;
+                        sums += Math.abs(numdata[x] - tableDataVal.values[x]);
+                        if ((sums < smallNum) && (x === numdata.length)) {
+                            smallNum = sums;
+                            gachaID = tableDataVal.id;
+                        }
+                    }
+                }
+                console.log(gachaID)
+            })
+        }
 
     </script>
 </body>
