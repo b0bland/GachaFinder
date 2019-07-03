@@ -63,10 +63,11 @@
         </div>
     </div>
     <script type="text/javascript">
+
+        var numdata = [];
+
         $("#formsubmit").on("click", function(event) {
             event.preventDefault();
-
-            var numdata = [];
 
             for(n=1;n<7;n++) {
                 var value = $("#question" + [n]).val();
@@ -81,7 +82,7 @@
                     console.log(data + "add");
                 })
 
-            comparison()
+            comparison();
         });
 
         function comparison() {
@@ -90,21 +91,27 @@
                 url: "/api/data",
                 method: "GET"
             }).then(function(tableData) {
-                var gachaID = "";
-                var smallNum = 100;
-                for(n=0;n<tableData.length;n++){
-                    var tableDataVal = tableData[n];
-                    for(x=0;x<numdata.length;x++){
-                        var sums = 0;
-                        sums += Math.abs(numdata[x] - tableDataVal.values[x]);
-                        if ((sums < smallNum) && (x === numdata.length)) {
-                            smallNum = sums;
-                            gachaID = tableDataVal.id;
-                        }
-                    }
-                }
-                console.log(gachaID)
+               console.log(tableData);
+               valueCompare(tableData);
             })
+        }
+
+        function valueCompare(tableData) {
+            var gachaID;
+            var smallNum = 100;
+            for(n=0;n<tableData.length;n++){
+                var tableDataVal = tableData[n];
+                // console.log(tableDataVal.values)
+                var sums = 0;
+                for(x=0;x<numdata.length;x++){
+                    sums += Math.abs(numdata[x] - tableDataVal.values[x]);                  
+                }
+                if (sums < smallNum) {
+                        smallNum = sums;
+                        gachaID = tableDataVal.id;
+                    }
+            }
+            console.log(tableData[gachaID].name)
         }
 
     </script>
