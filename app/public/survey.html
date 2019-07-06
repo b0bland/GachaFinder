@@ -74,14 +74,6 @@
                 var num = parseInt(value) + 1;
                 numdata.push(num);
             }
-
-            console.log(numdata)
-
-            $.post("/api/data", numdata)
-                .then(function(data) {
-                    console.log(data + "add");
-                })
-
             comparison();
         });
 
@@ -91,7 +83,6 @@
                 url: "/api/data",
                 method: "GET"
             }).then(function(tableData) {
-               console.log(tableData);
                valueCompare(tableData);
             })
         }
@@ -101,7 +92,6 @@
             var smallNum = 100;
             for(n=0;n<tableData.length;n++){
                 var tableDataVal = tableData[n];
-                // console.log(tableDataVal.values)
                 var sums = 0;
                 for(x=0;x<numdata.length;x++){
                     sums += Math.abs(numdata[x] - tableDataVal.values[x]);                  
@@ -112,6 +102,7 @@
                     }
             }
             console.log(tableData[gachaID].name)
+            numdata = [];
         }
 
     </script>
