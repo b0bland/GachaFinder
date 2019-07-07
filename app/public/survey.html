@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GachaFinder</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <style>
     form {
@@ -62,9 +62,30 @@
             </form>
         </div>
     </div>
+    <div class="modal fade" id="answerModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="answerModalLabel">Your preferred gacha game is:</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h1 class="gachaName"></h1>
+              <img class="gachaImg">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <script type="text/javascript">
 
         var numdata = [];
+        var nameGacha;
+        var imgGacha;
 
         $("#formsubmit").on("click", function(event) {
             event.preventDefault();
@@ -103,7 +124,18 @@
             }
             console.log(tableData[gachaID].name)
             numdata = [];
+            nameGacha = tableData[gachaID].name;
+            imgGacha = tableData[gachaID].imageURL;
+            modal();
         }
+
+        function modal() {
+            $(".gachaName").html(nameGacha);
+            $(".gachaImg").attr("src", imgGacha);
+            $("#answerModal").modal("show");
+        }
+
+        // Attempted to add modal, returns "TypeError: $(...).modal is not a function"
 
     </script>
 </body>
